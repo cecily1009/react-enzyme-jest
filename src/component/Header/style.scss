@@ -4,7 +4,7 @@ header {
     height: 50px;
     margin: 0 auto;
     padding: 0 10px;
-    background: #121212;
+    background: white;
     .wrap {
         display: block;
         position: relative;
@@ -16,8 +16,7 @@ header {
             display: block;
             width: 120px;
             position: absolute;
-            left: 10px;
-            top: 50%;
+            top: 43%;
             -webkit-transform: translateY(-50%);
             -moz-transform: translateY(-50%);
             transform: translateY(-50%);
