@@ -1,5 +1,5 @@
-import { italics } from 'prop-types/lib/ReactPropTypesSecret';
 import React from 'react';
+import { shallow } from 'enzyme';
 import { findByTestAttr, checkProps } from './../../../Utils/index';
 import ShareButton from './index';
 
@@ -8,10 +8,25 @@ describe('ShareButton Component', () => {
     it('Should not throw a warning', () => {
       const expectedProps = {
         buttonText: 'Example Button Text',
-        emitEvent: '() => {}',
+        emitEvent: () => {},
       };
       const propsError = checkProps(ShareButton, expectedProps);
       expect(propsError).toBeUndefined();
+    });
+  });
+  describe('Renders', () => {
+    let wrapper;
+    beforeEach(() => {
+      const props = {
+        buttonText: 'Example Button Text',
+        emitEvent: () => {},
+      };
+      wrapper = shallow(<ShareButton {...props} />);
+    });
+
+    it('should render abutton', () => {
+      const button = findByTestAttr(wrapper, 'buttonComponent');
+      expect(button.length).toBe(1);
     });
   });
 });
