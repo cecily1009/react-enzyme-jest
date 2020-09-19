@@ -25,6 +25,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import './styles.scss';
 
 export const ShareButton = ({ buttonText, emitEvent }) => {
   const submitEvent = () => {
