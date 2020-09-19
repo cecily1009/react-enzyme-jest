@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, simulate } from 'enzyme';
 import { findByTestAttr, checkProps } from './../../../Utils/index';
 import ShareButton from './index';
 
 describe('ShareButton Component', () => {
+  //check propTypes
   describe('Checking PropTypes', () => {
     it('Should not throw a warning', () => {
       const expectedProps = {
@@ -14,12 +15,15 @@ describe('ShareButton Component', () => {
       expect(propsError).toBeUndefined();
     });
   });
+
   describe('Renders', () => {
     let wrapper;
+    let mockFunc;
     beforeEach(() => {
+      mockFunc = jest.fn();
       const props = {
         buttonText: 'Example Button Text',
-        emitEvent: () => {},
+        emitEvent: mockFunc,
       };
       wrapper = shallow(<ShareButton {...props} />);
     });
@@ -27,6 +31,13 @@ describe('ShareButton Component', () => {
     it('should render abutton', () => {
       const button = findByTestAttr(wrapper, 'buttonComponent');
       expect(button.length).toBe(1);
+    });
+
+    it('should emit callback onClick event', () => {
+      const button = findByTestAttr(wrapper, 'buttonComponent');
+      button.simulate('click');
+      const callback = mockFunc.mock.calls.length;
+      expect(callback).toBe(1);
     });
   });
 });
