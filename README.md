@@ -1,3 +1,3 @@
 
 # react-enzyme-jest
-TDD approach to do the unit test.
+TDD approach to do the unit test with enzyme/jest.
